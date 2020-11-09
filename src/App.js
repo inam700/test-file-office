@@ -4,9 +4,9 @@ import Home from "./components/home";
 class App extends Component {
     state = {
         students: [
-            {name: "John", city: "New York"},
-            {name: "Cap", city: "Milan"},
-            {name: "Alica", city: "Manchester"}
+            {id: 1, name: "John", city: "New York"},
+            {id: 2, name: "Cap", city: "Milan"},
+            {id: 3, name: "Alica", city: "Manchester"}
         ],
         showStudents: false
     }
@@ -17,22 +17,32 @@ class App extends Component {
         })
     }
     render() {
+        let student = null;
+        if (this.state.showStudents) {
+            student = (
+                <div>
+                    {this.state.students.map(item => (
+                        <Home key={item.id}
+                              name={item.name}
+                              city={item.city}
+                        >
+                            Hello, working on e-commerce project.
+                        </Home>
+                    ))}
+                </div>
+            )
+        } else {
+            student = (
+                <div>
+                    <p>No data to show</p>
+                </div>
+            )
+        }
         return (
             <div>
                 <h1>Test File, First day at office.</h1>
                 <button onClick={this.handleToggleForStudent}>Show Students</button>
-                {this.state.showStudents === true ?
-                    <div>
-                        {this.state.students.map(item=>(
-                            <Home
-                                name={item.name}
-                                city={item.city}
-                            >
-                                Hello, working on e-commerce project.
-                            </Home>
-                        ))}
-                    </div>
-                    : null}
+                {student}
             </div>
         );
     }
