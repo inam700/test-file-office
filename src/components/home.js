@@ -1,21 +1,12 @@
-import React,{useState} from 'react';
+import React from 'react';
 
-const Home =()=>{
-    const [studentState,setStudentState]=useState({
-        students:[
-            {name: "john",city:"Lahore"}
-        ]
-    });
-    const handleChangeInName=()=>{
-        setStudentState({students: [
-                {name:"Wick",city:"Washington"}
-            ]
-        })
-    }
+const Home =(props)=>{
+
     return (
         <div>
-            <h2>Name:{studentState.students[0].name}</h2>
-            <button onClick={handleChangeInName}>Click me</button>
+            <h2>Name:{props.name}</h2>
+            <h3>City:{props.city}</h3>
+            <p>{props.children}</p>
         </div>
     )
 }
